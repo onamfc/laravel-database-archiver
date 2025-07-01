@@ -1,4 +1,5 @@
-# Laravel Database Archiver
+## Laravel Database Archiver
+[![Packagist License](https://img.shields.io/badge/Licence-MIT-blue)](http://choosealicense.com/licenses/mit/)
 
 A comprehensive Laravel package for efficient database record archival to cold storage systems like AWS S3, with support for multiple formats and automated scheduling.
 
