@@ -1,6 +1,6 @@
 {
     "name": "onamfc/laravel-database-archiver",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A Laravel package for efficient database record archival to cold storage",
     "keywords": ["laravel", "database", "archival", "cold-storage", "s3", "parquet"],
     "type": "library",

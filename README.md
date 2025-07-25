@@ -334,3 +334,7 @@ vendor/bin/phpunit
 # Test with specific configuration
 php artisan archive:table users --dry-run
 ```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
