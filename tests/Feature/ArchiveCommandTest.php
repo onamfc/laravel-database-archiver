@@ -1,9 +1,9 @@
 <?php
 
-namespace onamfc\LaravelDbArchiver\Tests\Feature;
+namespace LaravelDbArchiver\Tests\Feature;
 
 use Orchestra\Testbench\TestCase;
-use onamfc\LaravelDbArchiver\DbArchiverServiceProvider;
+use LaravelDbArchiver\Providers\DbArchiverServiceProvider;
 
 class ArchiveCommandTest extends TestCase
 {

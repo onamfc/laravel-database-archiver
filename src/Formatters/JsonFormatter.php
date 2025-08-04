@@ -1,6 +1,6 @@
 <?php
 
-namespace onamfc\LaravelDbArchiver\Formatters;
+namespace LaravelDbArchiver\Formatters;
 
 class JsonFormatter
 {

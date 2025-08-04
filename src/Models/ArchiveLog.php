@@ -1,6 +1,6 @@
 <?php
 
-namespace onamfc\LaravelDbArchiver\Models;
+namespace LaravelDbArchiver\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

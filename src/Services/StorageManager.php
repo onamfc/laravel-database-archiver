@@ -1,11 +1,11 @@
 <?php
 
-namespace onamfc\LaravelDbArchiver\Services;
+namespace LaravelDbArchiver\Services;
 
 use Illuminate\Support\Facades\Storage;
-use onamfc\LaravelDbArchiver\Adapters\LocalStorageAdapter;
-use onamfc\LaravelDbArchiver\Adapters\S3StorageAdapter;
-use onamfc\LaravelDbArchiver\Exceptions\StorageException;
+use LaravelDbArchiver\Adapters\LocalStorageAdapter;
+use LaravelDbArchiver\Adapters\S3StorageAdapter;
+use LaravelDbArchiver\Exceptions\StorageException;
 
 class StorageManager
 {
