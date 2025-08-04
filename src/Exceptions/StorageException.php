@@ -1,6 +1,6 @@
 <?php
 
-namespace YourVendor\LaravelDbArchiver\Exceptions;
+namespace onamfc\LaravelDbArchiver\Exceptions;
 
 use Exception;
 

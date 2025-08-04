@@ -1,6 +1,6 @@
 {
     "name": "onamfc/laravel-database-archiver",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A Laravel package for efficient database record archival to cold storage",
     "keywords": ["laravel", "database", "archival", "cold-storage", "s3", "parquet"],
     "type": "library",
@@ -25,18 +25,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Onamfc\\LaravelDbArchiver\\": "src/"
+            "LaravelDbArchiver\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Onamfc\\LaravelDbArchiver\\Tests\\": "tests/"
+            "LaravelDbArchiver\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Onamfc\\LaravelDbArchiver\\DbArchiverServiceProvider"
+                "LaravelDbArchiver\\Providers\\DbArchiverServiceProvider"
             ]
         }
     },

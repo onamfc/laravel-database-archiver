@@ -1,15 +1,15 @@
 <?php
 
-namespace YourVendor\LaravelDbArchiver\Services;
+namespace onamfc\LaravelDbArchiver\Services;
 
 use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use YourVendor\LaravelDbArchiver\Exceptions\ArchiveException;
-use YourVendor\LaravelDbArchiver\Formatters\JsonFormatter;
-use YourVendor\LaravelDbArchiver\Formatters\ParquetFormatter;
-use YourVendor\LaravelDbArchiver\Models\ArchiveLog;
+use onamfc\LaravelDbArchiver\Exceptions\ArchiveException;
+use onamfc\LaravelDbArchiver\Formatters\JsonFormatter;
+use onamfc\LaravelDbArchiver\Formatters\ParquetFormatter;
+use onamfc\LaravelDbArchiver\Models\ArchiveLog;
 
 class ArchiveService
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace YourVendor\LaravelDbArchiver\Adapters;
+namespace onamfc\LaravelDbArchiver\Adapters;
 
 use Illuminate\Support\Facades\File;
-use YourVendor\LaravelDbArchiver\Exceptions\StorageException;
+use onamfc\LaravelDbArchiver\Exceptions\StorageException;
 
 class LocalStorageAdapter
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace YourVendor\LaravelDbArchiver;
+namespace onamfc\LaravelDbArchiver;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\ServiceProvider;
-use YourVendor\LaravelDbArchiver\Commands\ArchiveAllCommand;
-use YourVendor\LaravelDbArchiver\Commands\ArchiveStatusCommand;
-use YourVendor\LaravelDbArchiver\Commands\ArchiveTableCommand;
-use YourVendor\LaravelDbArchiver\Services\ArchiveService;
-use YourVendor\LaravelDbArchiver\Services\StorageManager;
+use onamfc\LaravelDbArchiver\Commands\ArchiveAllCommand;
+use onamfc\LaravelDbArchiver\Commands\ArchiveStatusCommand;
+use onamfc\LaravelDbArchiver\Commands\ArchiveTableCommand;
+use onamfc\LaravelDbArchiver\Services\ArchiveService;
+use onamfc\LaravelDbArchiver\Services\StorageManager;
 
 class DbArchiverServiceProvider extends ServiceProvider
 {
@@ -17,7 +17,7 @@ class DbArchiverServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/db-archiver.php', 'db-archiver');
+        $this->mergeConfigFrom(__DIR__ . '/../config/db-archiver.php', 'db-archiver');
 
         $this->app->singleton(StorageManager::class, function ($app) {
             return new StorageManager($app['config']['db-archiver.storage']);
@@ -37,11 +37,11 @@ class DbArchiverServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__.'/../config/db-archiver.php' => config_path('db-archiver.php'),
+            __DIR__ . '/../config/db-archiver.php' => config_path('db-archiver.php'),
         ], 'db-archiver-config');
 
         $this->publishes([
-            __DIR__.'/../database/migrations/' => database_path('migrations'),
+            __DIR__ . '/../database/migrations/' => database_path('migrations'),
         ], 'db-archiver-migrations');
 
         if ($this->app->runningInConsole()) {

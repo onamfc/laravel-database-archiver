@@ -1,9 +1,9 @@
 <?php
 
-namespace YourVendor\LaravelDbArchiver\Commands;
+namespace onamfc\LaravelDbArchiver\Commands;
 
 use Illuminate\Console\Command;
-use YourVendor\LaravelDbArchiver\Services\ArchiveService;
+use onamfc\LaravelDbArchiver\Services\ArchiveService;
 
 class ArchiveTableCommand extends Command
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace YourVendor\LaravelDbArchiver\Adapters;
+namespace onamfc\LaravelDbArchiver\Adapters;
 
 use Aws\S3\S3Client;
-use YourVendor\LaravelDbArchiver\Exceptions\StorageException;
+use onamfc\LaravelDbArchiver\Exceptions\StorageException;
 
 class S3StorageAdapter
 {
