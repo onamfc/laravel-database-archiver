@@ -1,8 +1,8 @@
 <?php
 
-namespace onamfc\LaravelDbArchiver\Formatters;
+namespace LaravelDbArchiver\Formatters;
 
-use onamfc\LaravelDbArchiver\Exceptions\ArchiveException;
+use LaravelDbArchiver\Exceptions\ArchiveException;
 
 class ParquetFormatter
 {

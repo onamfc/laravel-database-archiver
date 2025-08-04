@@ -1,14 +1,13 @@
 <?php
 
-namespace onamfc\LaravelDbArchiver;
-
+namespace LaravelDbArchiver\Providers;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\ServiceProvider;
-use onamfc\LaravelDbArchiver\Commands\ArchiveAllCommand;
-use onamfc\LaravelDbArchiver\Commands\ArchiveStatusCommand;
-use onamfc\LaravelDbArchiver\Commands\ArchiveTableCommand;
-use onamfc\LaravelDbArchiver\Services\ArchiveService;
-use onamfc\LaravelDbArchiver\Services\StorageManager;
+use LaravelDbArchiver\Commands\ArchiveAllCommand;
+use LaravelDbArchiver\Commands\ArchiveStatusCommand;
+use LaravelDbArchiver\Commands\ArchiveTableCommand;
+use LaravelDbArchiver\Services\ArchiveService;
+use LaravelDbArchiver\Services\StorageManager;
 
 class DbArchiverServiceProvider extends ServiceProvider
 {

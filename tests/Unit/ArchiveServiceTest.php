@@ -1,10 +1,10 @@
 <?php
 
-namespace onamfc\LaravelDbArchiver\Tests\Unit;
+namespace LaravelDbArchiver\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use onamfc\LaravelDbArchiver\Services\ArchiveService;
-use onamfc\LaravelDbArchiver\Services\StorageManager;
+use LaravelDbArchiver\Services\ArchiveService;
+use LaravelDbArchiver\Services\StorageManager;
 
 class ArchiveServiceTest extends TestCase
 {
