@@ -16,7 +16,7 @@ class DbArchiverServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/db-archiver.php', 'db-archiver');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/db-archiver.php', 'db-archiver');
 
         $this->app->singleton(StorageManager::class, function ($app) {
             return new StorageManager($app['config']['db-archiver.storage']);
@@ -36,11 +36,11 @@ class DbArchiverServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__ . '/../config/db-archiver.php' => config_path('db-archiver.php'),
+            __DIR__ . '/../../config/db-archiver.php' => config_path('db-archiver.php'),
         ], 'db-archiver-config');
 
         $this->publishes([
-            __DIR__ . '/../database/migrations/' => database_path('migrations'),
+            __DIR__ . '/../../database/migrations/' => database_path('migrations'),
         ], 'db-archiver-migrations');
 
         if ($this->app->runningInConsole()) {
