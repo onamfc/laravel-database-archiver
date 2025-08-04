@@ -19,7 +19,7 @@ A comprehensive Laravel package for efficient database record archival to cold s
 Install the package via Composer:
 
 ```bash
-composer require onamfc/laravel-db-archiver
+composer require onamfc/laravel-database-archiver
 ```
 
 Publish the configuration file:
