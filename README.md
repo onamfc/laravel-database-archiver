@@ -154,7 +154,7 @@ php artisan archive:status users
 ### Programmatic Usage
 
 ```php
-use YourVendor\LaravelDbArchiver\Services\ArchiveService;
+use onamfc\LaravelDbArchiver\Services\ArchiveService;
 
 class YourController extends Controller
 {
@@ -280,7 +280,7 @@ Stores data in Parquet format for efficient compression and analytics.
 All archival operations are logged to the `archive_logs` table:
 
 ```php
-$logs = \YourVendor\LaravelDbArchiver\Models\ArchiveLog::where('table_name', 'users')
+$logs = \onamfc\LaravelDbArchiver\Models\ArchiveLog::where('table_name', 'users')
     ->latest()
     ->get();
 ```
