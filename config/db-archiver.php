@@ -29,15 +29,12 @@ return [
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
             'bucket' => env('DB_ARCHIVER_S3_BUCKET'),
-            'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-            'throw' => false,
         ],
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app/archives'),
-            'throw' => false,
         ],
     ],
 
@@ -115,20 +112,5 @@ return [
         'enabled' => env('DB_ARCHIVER_LOGGING', true),
         'channel' => env('DB_ARCHIVER_LOG_CHANNEL', 'daily'),
         'level' => env('DB_ARCHIVER_LOG_LEVEL', 'info'),
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Notifications
-    |--------------------------------------------------------------------------
-    |
-    | Configure notifications for archival operations.
-    |
-    */
-    'notifications' => [
-        'enabled' => env('DB_ARCHIVER_NOTIFICATIONS', false),
-        'channels' => ['mail', 'slack'],
-        'on_success' => true,
-        'on_failure' => true,
     ],
 ];
