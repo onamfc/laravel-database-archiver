@@ -19,7 +19,10 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you may configure the storage drivers for archival. Each driver
-    | can have its own configuration options.
+    | can have its own configuration options. The endpoint and use_path_style_endpoint
+    | are crucial for scenarios where you might be using an S3-compatible storage
+    | service other than AWS S3 itself (like MinIO or DigitalOcean Spaces), or if you
+    | need to force path-style addressing for S3 buckets.
     |
     */
     'storage' => [
