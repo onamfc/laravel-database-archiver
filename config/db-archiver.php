@@ -19,7 +19,10 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you may configure the storage drivers for archival. Each driver
-    | can have its own configuration options.
+    | can have its own configuration options. The endpoint and use_path_style_endpoint
+    | are crucial for scenarios where you might be using an S3-compatible storage
+    | service other than AWS S3 itself (like MinIO or DigitalOcean Spaces), or if you
+    | need to force path-style addressing for S3 buckets.
     |
     */
     'storage' => [
@@ -29,15 +32,12 @@ return [
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
             'bucket' => env('DB_ARCHIVER_S3_BUCKET'),
-            'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-            'throw' => false,
         ],
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app/archives'),
-            'throw' => false,
         ],
     ],
 
@@ -115,20 +115,5 @@ return [
         'enabled' => env('DB_ARCHIVER_LOGGING', true),
         'channel' => env('DB_ARCHIVER_LOG_CHANNEL', 'daily'),
         'level' => env('DB_ARCHIVER_LOG_LEVEL', 'info'),
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Notifications
-    |--------------------------------------------------------------------------
-    |
-    | Configure notifications for archival operations.
-    |
-    */
-    'notifications' => [
-        'enabled' => env('DB_ARCHIVER_NOTIFICATIONS', false),
-        'channels' => ['mail', 'slack'],
-        'on_success' => true,
-        'on_failure' => true,
     ],
 ];
