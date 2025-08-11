@@ -1,7 +1,6 @@
 
 <h1 align="center"><img src="https://dpt3aqeyfpth5.cloudfront.net/database-archiver/database-archiver-gradient.png" height="256"></h1>
 
-<p align="center"><img src="https://img.shields.io/badge/License-MIT-blue.svg" /></p>
 <p align="center" style="font-size: 18px">
   <b>A comprehensive Laravel package for efficient database record archival to cold storage systems like AWS S3, with support for multiple formats and automated scheduling.
 </b>
