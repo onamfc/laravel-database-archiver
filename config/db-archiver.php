@@ -71,7 +71,7 @@ return [
     |
     */
     'tables' => [
-        'users' => [
+        'add-table-name-here' => [
             'enabled' => true,
             'criteria' => [
                 'column' => 'created_at',
@@ -87,7 +87,7 @@ return [
                 // ['column' => 'status', 'operator' => '=', 'value' => 'inactive'],
             ],
         ],
-        'logs' => [
+        'add-another-table-name-here' => [
             'enabled' => true,
             'criteria' => [
                 'column' => 'created_at',
