@@ -1,7 +1,13 @@
-## Laravel Database Archiver
-[![Packagist License](https://img.shields.io/badge/Licence-MIT-blue)](http://choosealicense.com/licenses/mit/)
 
-A comprehensive Laravel package for efficient database record archival to cold storage systems like AWS S3, with support for multiple formats and automated scheduling.
+<h1 align="center"><img src="https://dpt3aqeyfpth5.cloudfront.net/database-archiver/database-archiver-gradient.png" height="256"></h1>
+
+<p align="center"><img src="https://img.shields.io/badge/License-MIT-blue.svg" /></p>
+<p align="center" style="font-size: 18px">
+  <b>A comprehensive Laravel package for efficient database record archival to cold storage systems like AWS S3, with support for multiple formats and automated scheduling.
+</b>
+</p>
+
+---
 
 ## Features
 
@@ -61,7 +67,7 @@ Configure your archival settings in `config/db-archiver.php`:
 
 ```php
 'tables' => [
-    'users' => [
+    'add-table-name-here' => [
         'enabled' => true,
         'criteria' => [
             'column' => 'created_at',
@@ -74,7 +80,7 @@ Configure your archival settings in `config/db-archiver.php`:
         'schedule' => 'daily',
         'delete_after_archive' => false,
     ],
-    'logs' => [
+    'add-another-table-name-here' => [
         'enabled' => true,
         'criteria' => [
             'column' => 'created_at',
