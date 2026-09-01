@@ -148,7 +148,15 @@ class ArchiveService
         $storage = $config['storage'] ?? $this->config['default_storage'];
         $archivedCount = 0;
 
-        $query->orderBy('id')->chunk($chunkSize, function ($records) use ($table, $config, $format, $storage, &$archivedCount) {
+        /**
+         * chunkById, not chunk. chunk() pages with OFFSET, and when delete_after_archive removes a
+         * batch the rows below it shift up by that many positions, so the next offset steps clean
+         * over them. Archiving with deletion enabled silently skipped roughly half the eligible
+         * rows in alternating blocks. chunkById pages on "id greater than the last one seen", which
+         * deleting the rows behind it cannot disturb. It applies its own ordering on that column,
+         * so the explicit orderBy is no longer needed.
+         */
+        $query->chunkById($chunkSize, function ($records) use ($table, $config, $format, $storage, &$archivedCount) {
             $data = $records->toArray();
             $filename = $this->generateFilename($table, $config, $format);
             
