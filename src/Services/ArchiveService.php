@@ -124,6 +124,7 @@ class ArchiveService
         if (isset($config['criteria'])) {
             $criteria = $config['criteria'];
             $value = $this->resolveCriteriaValue($criteria['value']);
+            $this->guardAgainstFutureCutoff($table, $criteria, $value, $config);
             $query->where($criteria['column'], $criteria['operator'], $value);
         }
 
@@ -131,6 +132,7 @@ class ArchiveService
         if (isset($config['additional_criteria'])) {
             foreach ($config['additional_criteria'] as $criterion) {
                 $value = $this->resolveCriteriaValue($criterion['value']);
+                $this->guardAgainstFutureCutoff($table, $criterion, $value, $config);
                 $query->where($criterion['column'], $criterion['operator'], $value);
             }
         }
@@ -204,11 +206,67 @@ class ArchiveService
      */
     protected function resolveCriteriaValue($value)
     {
-        if (is_string($value) && preg_match('/\d+\s+(days?|weeks?|months?|years?)\s+ago/', $value)) {
-            return Carbon::now()->sub(...explode(' ', $value, 2));
+        if ($value instanceof \Closure) {
+            return $value();
+        }
+
+        /**
+         * Handed to Carbon whole. This used to split the phrase and call
+         * Carbon::now()->sub('1', 'month ago'), but sub() takes (unit, value), so the arguments
+         * arrived reversed and "1 month ago" resolved to one month in the FUTURE. Every row then
+         * satisfied a "created_at <" criteria, and a table configured with delete_after_archive
+         * lost its entire contents rather than only what had expired.
+         *
+         * The pattern is anchored so only relative phrases are parsed. Anything else - an explicit
+         * date, a number, a status string - passes through untouched, since Carbon would happily
+         * turn a bare "100" into a timestamp.
+         */
+        if (is_string($value)
+            && preg_match('/^\s*\d+\s+(second|minute|hour|day|week|month|year)s?\s+ago\s*$/i', $value)) {
+            return Carbon::parse($value);
         }
 
         return $value;
+    }
+
+    /**
+     * Refuse a cutoff that would sweep up rows which have not expired.
+     *
+     * A "column < date" criteria is asking for everything older than that date. If the date lands
+     * in the future it selects the whole table, and with delete_after_archive that empties it. That
+     * is never what a retention rule means, so it is treated as a misconfiguration rather than
+     * carried out.
+     */
+    protected function guardAgainstFutureCutoff(string $table, array $criteria, $value, array $config): void
+    {
+        if (!($config['delete_after_archive'] ?? false)) {
+            return;
+        }
+
+        if (!in_array($criteria['operator'] ?? '=', ['<', '<='], true)) {
+            return;
+        }
+
+        /**
+         * A criteria value reaches here either already resolved to a date, or as a literal date
+         * string straight from the config. Both forms are checked; anything that is not a date at
+         * all - a number, a status - is none of this guard's business.
+         */
+        if ($value instanceof \DateTimeInterface) {
+            $cutoff = Carbon::instance($value);
+        } elseif (is_string($value) && preg_match('/^\d{4}-\d{2}-\d{2}([ T]|$)/', $value)) {
+            $cutoff = Carbon::parse($value);
+        } else {
+            return;
+        }
+
+        if ($cutoff->isFuture()) {
+            throw new ArchiveException(
+                "Refusing to archive {$table}: the criteria on {$criteria['column']} resolves to "
+                . $cutoff->toDateTimeString() . ', which is in the future. Every row '
+                . 'would match and delete_after_archive would empty the table. Check the criteria value.'
+            );
+        }
     }
 
     /**
